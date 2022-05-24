@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Center, Container, Heading, Box, Text, Link } from "@chakra-ui/react";
 import ProgressBar from "@components/ProgressBar";
 import NepaliDate from "nepali-date/cjs/NepaliDate";
+import FullPageLoadingSpinner from "@components/FullPageLoadingSpinner";
 
 const Home = () => {
 	const now = new NepaliDate(new Date(Date.now()));
@@ -26,7 +27,7 @@ const Home = () => {
 	}, []);
 
 	if (!isClient) {
-		return <h1>Loading...</h1>;
+		return <FullPageLoadingSpinner />;
 	}
 
 	return (

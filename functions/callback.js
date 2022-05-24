@@ -8,7 +8,7 @@ exports.handler = async function (event, context) {
 	});
 
 	const callBackURL =
-		"http://127.0.0.1:8888/api/callback";
+		"https://nepali-year-progress.netlify.app/api/callback";
 
 	const { state, code } = event.queryStringParameters;
 

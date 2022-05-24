@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const TwitterApi = require("twitter-api-v2").default;
 
-const callBackURL = "http://127.0.0.1:8888/api/callback";
+const callBackURL = "https://nepali-year-progress.netlify.app/api/callback";
 
 exports.handler = async function (event, context) {
   const twitterClient = new TwitterApi({

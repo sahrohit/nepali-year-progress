@@ -1,6 +1,8 @@
 const OpenGraphHead = () => (
 	<>
-		<title>Madre | only progress bar you`d rather see go slower.</title>
+		<title>
+			Nepali Year Progress | only progress bar you`d rather see go slower.
+		</title>
 		<meta
 			name="title"
 			content="Nepali Year Progress | only progress bar you'd rather see go slower."

@@ -5,7 +5,13 @@ import NepaliDate from "nepali-date/cjs/NepaliDate";
 import FullPageLoadingSpinner from "@components/FullPageLoadingSpinner";
 
 const Home = () => {
-	const now = new NepaliDate(new Date(Date.now()));
+	const now = new NepaliDate(
+		new Date(
+			new Date(Date.now()).getTime() +
+				new Date(Date.now()).getTimezoneOffset() * 60000 +
+				3600000 * "+5.75"
+		)
+	);
 	const currentYear = +now.format("YYYY");
 	const currentMonth = +now.format("M");
 
@@ -17,9 +23,33 @@ const Home = () => {
 	useEffect(() => {
 		setIsClient(true);
 		const interval = setInterval(() => {
-			setSeconds(new NepaliDate(new Date(Date.now())).getSeconds());
-			setMinutes(new NepaliDate(new Date(Date.now())).getMinutes());
-			setHours(new NepaliDate(new Date(Date.now())).getHours());
+			setSeconds(
+				new NepaliDate(
+					new Date(
+						new Date(Date.now()).getTime() +
+							new Date(Date.now()).getTimezoneOffset() * 60000 +
+							3600000 * "+5.75"
+					)
+				).getSeconds()
+			);
+			setMinutes(
+				new NepaliDate(
+					new Date(
+						new Date(Date.now()).getTime() +
+							new Date(Date.now()).getTimezoneOffset() * 60000 +
+							3600000 * "+5.75"
+					)
+				).getMinutes()
+			);
+			setHours(
+				new NepaliDate(
+					new Date(
+						new Date(Date.now()).getTime() +
+							new Date(Date.now()).getTimezoneOffset() * 60000 +
+							3600000 * "+5.75"
+					)
+				).getHours()
+			);
 		}, 1000);
 		return () => {
 			clearInterval(interval);
@@ -49,13 +79,23 @@ const Home = () => {
 					</Center>
 
 					<Text align="center" fontSize={"xl"}>
-						{new NepaliDate(new Date(Date.now())).format(
-							"DDD MMM D, YYYY"
-						)}{" "}
+						{new NepaliDate(
+							new Date(
+								new Date(Date.now()).getTime() +
+									new Date(Date.now()).getTimezoneOffset() *
+										60000 +
+									3600000 * "+5.75"
+							)
+						).format("DDD MMM D, YYYY")}{" "}
 						(
-						{new NepaliDate(new Date(Date.now())).format(
-							"ddd mmmm d, yyyy"
-						)}
+						{new NepaliDate(
+							new Date(
+								new Date(Date.now()).getTime() +
+									new Date(Date.now()).getTimezoneOffset() *
+										60000 +
+									3600000 * "+5.75"
+							)
+						).format("ddd mmmm d, yyyy")}
 						)
 					</Text>
 
@@ -76,7 +116,7 @@ const Home = () => {
 						})}
 					</Text>
 					<ProgressBar
-						title="Year Progress"
+						title={`Year Progress (${now.format("yyyy")})`}
 						percent={
 							((now.getTime() -
 								new NepaliDate(currentYear, 0, 0).getTime()) /
@@ -92,7 +132,7 @@ const Home = () => {
 						}
 					/>
 					<ProgressBar
-						title="Month Progress"
+						title={`Month Progress (${now.format("mmmm")})`}
 						percent={
 							((now.getTime() -
 								new NepaliDate(
@@ -116,7 +156,9 @@ const Home = () => {
 						}
 					/>
 					<ProgressBar
-						title="Day Progress"
+						title={`Day Progress (${now.format(
+							"dd"
+						)} गते,  ${now.format("dddd")})`}
 						percent={
 							parseFloat(
 								(hours * 3600 + minutes * 60 + seconds) / 86400

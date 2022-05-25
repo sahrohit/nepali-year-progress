@@ -4,15 +4,20 @@ const { schedule } = require("@netlify/functions");
 const NepaliDate = require("nepali-date");
 
 const handler = async function (event, context) {
-	const now = new NepaliDate(new Date(Date.now()));
+	const now = new NepaliDate(
+		new Date(
+			new Date(Date.now()).getTime() +
+				new Date(Date.now()).getTimezoneOffset() * 60000 +
+				3600000 * "+5.75"
+		)
+	);
 	const currentYear = +now.format("YYYY");
 	const diff =
 		(now.getTime() - new NepaliDate(currentYear, 0, 0).getTime()) /
 		(new NepaliDate(currentYear + 1, 0, 0).getTime() -
 			new NepaliDate(currentYear, 0, 0).getTime());
 
-	const roundedDiff = diff.toFixed(2) * 100;
-	console.log("Rouned Diff", roundedDiff);
+	const roundedDiff = Math.floor(diff * 100);
 
 	const response = await fetch(
 		"https://nepali-year-progress-default-rtdb.asia-southeast1.firebasedatabase.app/lastTweet.json"
@@ -101,6 +106,12 @@ const handler = async function (event, context) {
 				body: JSON.stringify({
 					...bars,
 					percentage: bars.percentage * 100,
+					presisePercentage:
+						((now.getTime() -
+							new NepaliDate(currentYear, 0, 0).getTime()) *
+							100) /
+						(new NepaliDate(currentYear + 1, 0, 0).getTime() -
+							new NepaliDate(currentYear, 0, 0).getTime()),
 				}),
 				headers: { "Content-Type": "application/json" },
 			}

@@ -1,19 +1,16 @@
 const fetch = require("node-fetch");
 const TwitterApi = require("twitter-api-v2").default;
 
-exports.handler = async function (event, context) {
+exports.handler = async function (event) {
 	const twitterClient = new TwitterApi({
-		clientId: "VmZ0MGg1MEtGdnlXVnByal9UNnY6MTpjaQ",
-		clientSecret: "YX7APfeyX6B21fPMBPGnE8nXhcbbF5pNH1B4tltfSMhuw5G9WK",
+		clientId: process.env.TWITTER_CLIENT_ID,
+		clientSecret: process.env.TWITTER_CLIENT_SECRET,
 	});
-
-	const callBackURL =
-		"https://nepali-year-progress.netlify.app/api/callback";
 
 	const { state, code } = event.queryStringParameters;
 
 	const response = await fetch(
-		"https://nepali-year-progress-default-rtdb.asia-southeast1.firebasedatabase.app/twitterKeys.json"
+		`${process.env.DATABASE_URL}/twitterKeys.json`
 	);
 	const { codeVerifier, state: storedState } = await response.json();
 
@@ -24,25 +21,21 @@ exports.handler = async function (event, context) {
 		};
 	}
 
-	const {
-		client: loggedClient,
-		accessToken,
-		refreshToken,
-	} = await twitterClient.loginWithOAuth2({
+	const { accessToken, refreshToken } = await twitterClient.loginWithOAuth2({
 		code,
 		codeVerifier,
-		redirectUri: callBackURL,
+		redirectUri: process.env.CALLBACK_URL,
 	});
 
 	const putResponse = await fetch(
-		"https://nepali-year-progress-default-rtdb.asia-southeast1.firebasedatabase.app/twitterKeys.json",
+		`${process.env.DATABASE_URL}/twitterKeys.json`,
 		{
 			method: "PUT",
 			body: JSON.stringify({ accessToken, refreshToken }),
 			headers: { "Content-Type": "application/json" },
 		}
 	);
-	const data = await putResponse.json();
+	await putResponse.json();
 
 	return {
 		statusCode: 200,

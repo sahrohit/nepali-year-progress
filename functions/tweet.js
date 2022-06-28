@@ -3,7 +3,7 @@ const TwitterApi = require("twitter-api-v2").default;
 const { schedule } = require("@netlify/functions");
 const NepaliDate = require("nepali-date");
 
-const handler = async function (event, context) {
+const handler = async function () {
 	const now = new NepaliDate(
 		new Date(
 			new Date(Date.now()).getTime() +
@@ -19,9 +19,7 @@ const handler = async function (event, context) {
 
 	const roundedDiff = Math.floor(diff * 100);
 
-	const response = await fetch(
-		"https://nepali-year-progress-default-rtdb.asia-southeast1.firebasedatabase.app/lastTweet.json"
-	);
+	const response = await fetch(`${process.env.DATABASE_URL}/lastTweet.json`);
 	const { percentage } = await response.json();
 
 	function repeat(s, i) {
@@ -65,13 +63,13 @@ const handler = async function (event, context) {
 
 	if (percentage < roundedDiff) {
 		const response = await fetch(
-			"https://nepali-year-progress-default-rtdb.asia-southeast1.firebasedatabase.app/twitterKeys.json"
+			`${process.env.DATABASE_URL}/twitterKeys.json`
 		);
 		const { refreshToken } = await response.json();
 
 		const twitterClient = new TwitterApi({
-			clientId: "VmZ0MGg1MEtGdnlXVnByal9UNnY6MTpjaQ",
-			clientSecret: "YX7APfeyX6B21fPMBPGnE8nXhcbbF5pNH1B4tltfSMhuw5G9WK",
+			clientId: process.env.TWITTER_CLIENT_ID,
+			clientSecret: process.env.TWITTER_CLIENT_SECRET,
 		});
 
 		const {
@@ -81,7 +79,7 @@ const handler = async function (event, context) {
 		} = await twitterClient.refreshOAuth2Token(refreshToken);
 
 		const putResponse = await fetch(
-			"https://nepali-year-progress-default-rtdb.asia-southeast1.firebasedatabase.app/twitterKeys.json",
+			`${process.env.DATABASE_URL}/twitterKeys.json`,
 			{
 				method: "put",
 				body: JSON.stringify({
@@ -91,31 +89,26 @@ const handler = async function (event, context) {
 				headers: { "Content-Type": "application/json" },
 			}
 		);
-		const data = await putResponse.json();
+		await putResponse.json();
 
-		const bars = make_bar(roundedDiff, "░█", 10, 20);
+		const bars = make_bar(roundedDiff, "░▒▓█", 18, 18);
 
-		const result = await refreshedClient.v2.tweet(
-			`${bars.str} ${bars.percentage * 100}%`
-		);
+		await refreshedClient.v2.tweet(`${bars.str} ${bars.percentage * 100}%`);
 
-		await fetch(
-			"https://nepali-year-progress-default-rtdb.asia-southeast1.firebasedatabase.app/lastTweet.json",
-			{
-				method: "put",
-				body: JSON.stringify({
-					...bars,
-					percentage: bars.percentage * 100,
-					presisePercentage:
-						((now.getTime() -
-							new NepaliDate(currentYear, 0, 0).getTime()) *
-							100) /
-						(new NepaliDate(currentYear + 1, 0, 0).getTime() -
-							new NepaliDate(currentYear, 0, 0).getTime()),
-				}),
-				headers: { "Content-Type": "application/json" },
-			}
-		);
+		await fetch(`${process.env.DATABASE_URL}/lastTweet.json`, {
+			method: "put",
+			body: JSON.stringify({
+				...bars,
+				percentage: bars.percentage * 100,
+				presisePercentage:
+					((now.getTime() -
+						new NepaliDate(currentYear, 0, 0).getTime()) *
+						100) /
+					(new NepaliDate(currentYear + 1, 0, 0).getTime() -
+						new NepaliDate(currentYear, 0, 0).getTime()),
+			}),
+			headers: { "Content-Type": "application/json" },
+		});
 
 		return {
 			statusCode: 200,

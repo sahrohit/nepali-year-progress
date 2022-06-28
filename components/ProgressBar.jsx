@@ -1,5 +1,5 @@
 import React from "react";
-import { HStack, VStack, Text, Progress, Box } from "@chakra-ui/react";
+import { HStack, VStack, Text, Progress } from "@chakra-ui/react";
 
 const ProgressBar = ({ title, percent }) => {
 	return (

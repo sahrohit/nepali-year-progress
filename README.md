@@ -1,34 +1,94 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="./public/Madre_dark.svg" alt="Logo" width="160" height="80">
+  </a>
+
+<div align="right">
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ca17bc45-1feb-4998-8750-9f46011e0ae7/deploy-status)](https://app.netlify.com/sites/nepali-year-progress/deploys)
+
+</div>
+<h2 align="center">Nepali Year Progress</h2>
+
+
+
+  <p align="center">
+    Built with love & Next.js
+    <br />
+    <a href="https://nepali-year-progress.netlify.app/">https://nepali-year-progress.netlify.app</a>
+    </p>
+
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+
+</div>
+
+## About The Project
+
+A gentle reminder on how far you are into 2079 BS. Follow [@np_yearprogress](https://twitter.com/np_yearprogress) to stay up to date.
+
+Inspired by @year_progress.
+
+<!-- GETTING STARTED -->
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy up and running follow these simple example steps.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Installation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repo
+    ```sh
+    git clone https://github.com/sahrohit/nepali-year-progress.git
+    ```
+2. a) Install NPM packages
+    ```sh
+    npm install
+    ```
+    b) Install Netlify CLI
+    ```sh
+    npm install -g netlify-cli
+    ```
+3. Rename the `.env.example` to `.env` & update you enviroment variables.
+    ```js
+    API_KEY = YOUR API KEYS
+    ```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### After Setting Up
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+`netlify dev` - Starts a Next App at http://localhost:3000
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<!-- ROADMAP -->
+<!--
+## Roadmap
 
-## Learn More
+-   [] Feature 1
+-   [] Feature 2
+-   [] Feature 3
+    -   [] Nested Feature
 
-To learn more about Next.js, take a look at the following resources:
+See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues). -->
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<!-- CONTRIBUTING -->
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<!-- CONTACT -->

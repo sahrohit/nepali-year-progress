@@ -86,7 +86,7 @@ const Home = () => {
 										60000 +
 									3600000 * "+5.75"
 							)
-						).format("DDD MMM D, YYYY")}{" "}
+						).format("DDD MMMM D, YYYY")}{" "}
 						(
 						{new NepaliDate(
 							new Date(

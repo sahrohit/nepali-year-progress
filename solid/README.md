@@ -1,34 +1,38 @@
-## Usage
+## About The Project
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+This is the same project (nepali-year-progress) but build with Solidjs for better performace.
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+<!-- GETTING STARTED -->
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+## Getting Started
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+To get a local copy up and running follow these simple example steps.
 
-## Available Scripts
+### Installation
 
-In the project directory, you can run:
+1. Clone the repo
 
-### `npm dev` or `npm start`
+    ```sh
+    git clone https://github.com/sahrohit/nepali-year-progress.git
+    ```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. Open `solid` in a different workspace for your IDE (to prevent linting errors).
 
-The page will reload if you make edits.<br>
+    ```sh
+    code solid
+    ```
 
-### `npm run build`
+3. Install dependencies.
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
+    ```sh
+    yarn install
+    ```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+4. Rename the `.env.example` to `.env` & update you enviroment variables.
+    ```js
+    API_KEY = YOUR API KEYS
+    ```
 
-## Deployment
+### After Setting Up
 
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+`yarn dev` - Starts a Vite Solid App at http://localhost:3000

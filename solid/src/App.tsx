@@ -47,11 +47,16 @@ const App: Component = () => {
 					Nepali Year Progress
 				</h1>
 				<div class="text-center">
-					<p class="text-xl">
-						{getCurrentNepaliDate().format("DDD MMMM D, YYYY")} (
-						{getCurrentNepaliDate().format("ddd mmmm d, yyyy")})
-					</p>
-					<span class="countdown text-3xl">
+					<div class="flex flex-col md:flex-row md:space-x-2">
+						<p class="text-xl">
+							{getCurrentNepaliDate().format("DDD MMMM D, YYYY")}
+						</p>
+						<p class="text-xl">
+							({getCurrentNepaliDate().format("ddd mmmm d, yyyy")}
+							)
+						</p>
+					</div>
+					<span class="countdown text-4xl">
 						<span
 							style={{
 								"--value": convertToLocaleString(hours()),

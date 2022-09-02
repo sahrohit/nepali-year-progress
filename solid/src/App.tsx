@@ -54,12 +54,7 @@ const App: Component = () => {
     >
       <div class="bg-white m-8 p-8 flex flex-col space-y-8 sm:space-y-12 rounded-md opacity-90">
         <div class="flex flex-row items-center gap-4 justify-between">
-          <img
-            class="logo"
-            src="/src/assets/apple-touch-icon.png"
-            alt="Logo"
-            loading="lazy"
-          />
+          <img class="logo" src="logo.svg" alt="Logo" loading="lazy" />
           <h1 class="text-4xl font-semibold text-center">
             <span class="whitespace-nowrap">Nepali Year</span> Progress
           </h1>

@@ -1,0 +1,18 @@
+# Ignore artifacts:
+build
+coverage
+
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+
+# solid.js
+node_modules
+dist
+
+# production
+/dist
+
+**/*.d.ts
+**/*.config.js

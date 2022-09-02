@@ -6,7 +6,13 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "checks": "eslint . && prettier --check .",
+    "fix": "eslint --fix . && prettier --write ."
   },
   "license": "MIT",
   "devDependencies": {
@@ -16,8 +22,10 @@
     "cssnano": "^5.1.12",
     "daisyui": "^2.17.0",
     "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-solid": "^0.7.0",
     "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
     "tailwindcss": "^3.1.4",
     "typescript": "^4.6.4",
     "vite": "^2.9.9",
